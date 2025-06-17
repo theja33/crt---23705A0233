@@ -1,0 +1,12 @@
+public class App{
+    public static void main(String[] args){
+        System.out.println(LinearSearch(new int[]{10,19,2,3,1,8,9},19));
+          System.out.println(LinearSearch(new int[]{10,19,2,3,1,8,9},9));
+             System.out.println(LinearSearch(new int[]{10,19,2,3,1,8,9},7));
+         }
+         public static int LinearSearch(int[] nums,int target){
+             for(int i=0;i<nums.length;i++){
+                 if(target==nums[i])return i;
+         }return -1;
+    }
+}

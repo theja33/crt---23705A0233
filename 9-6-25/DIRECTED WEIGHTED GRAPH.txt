@@ -1,0 +1,81 @@
+import java.util.HashSet;
+
+public class App {
+
+    static class Edge {
+        int src;
+        int dest;
+        int weight;
+        Edge(int src, int dest, int weight) {
+            this.src = src;
+            this.dest = dest;
+            this.weight = weight;
+        }
+        Edge(int src, int dest) {
+            this.src = src;
+            this.dest = dest;
+            this.weight = 1;
+        }
+    }
+
+    static class Graph {
+        HashSet<Edge> graph;
+        int vertices;
+        boolean isDirected;
+
+        Graph(int vertices, boolean isDirected) {
+            this.vertices = vertices;
+            this.isDirected = isDirected;
+            graph = new HashSet<Edge>();
+        }
+        public void addEdge(int src, int dest) {
+            if (isValid(src, dest)) {
+                Edge e = new Edge(src, dest);
+                graph.add(e);
+                if (!isDirected) {
+                    Edge e2 = new Edge(dest, src);
+                    graph.add(e2);
+                }
+            } else {
+                System.out.println("Invalid source and destination");
+            }
+        }
+        public void addEdge(int src, int dest, int weight) {
+            if (isValid(src, dest)) {
+                Edge e = new Edge(src, dest, weight);
+                graph.add(e);
+                if (!isDirected) {
+                    Edge e2 = new Edge(dest, src, weight);
+                    graph.add(e2);
+                }
+            } else {
+                System.out.println("Invalid source and destination");
+            }
+        }
+        public boolean isValid(int src, int dest) {
+            return src >= 0 && dest >= 0 && src < vertices && dest < vertices && src != dest;
+        }
+    }
+    public static void main(String[] args) {
+        Graph g = new Graph(5, true);
+        g.addEdge(0, 1);
+        g.addEdge(1, 2, 5);
+        int[] nums = {19, 21, 3, 8, 12, 13};
+
+        for (int j = 0; j < nums.length - 1; j++) {
+            boolean isSwapped = false;
+            for (int i = 0; i < nums.length - j - 1; i++) {
+                if (nums[i] > nums[i + 1]) {
+                    int temp = nums[i];
+                    nums[i] = nums[i + 1];
+                    nums[i + 1] = temp;
+                    isSwapped = true;
+                }
+            }
+            if (!isSwapped) break;
+        }
+        for (int val : nums) {
+            System.out.print(val + " ");
+        }
+    }
+}

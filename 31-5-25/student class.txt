@@ -1,0 +1,25 @@
+public class student{
+     String name = "manasa"; 
+     String roll = "23705A0219";
+     String branch = "EEE";
+     byte year = 4;
+     char section = 'b';
+     void payfee(int amount){
+         System.out.println("paying:" + amount + "to the college");
+     }
+     int attendance(){
+         System.out.println("sending the attendance to the student");
+         return 80;
+         
+     }
+ }
+public class Main{
+    public static void main(String[] args){
+        student S1 = new student();
+         System.out.println(S1.name);
+         System.out.println(S1.roll); 
+         System.out.println(S1.attendance());
+         S1.payfee (amount = 100000);
+    }
+    
+}   
